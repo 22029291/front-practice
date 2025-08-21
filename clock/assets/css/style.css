@@ -1,0 +1,254 @@
+:root {
+  --bg: #f6f7fb;
+  --card: #fff;
+  --text: #1f2937;
+  --muted: #94a3b8;
+  --primary: #ff8a00;
+  --ok: #10b981;
+  --danger: #ef4444;
+  --border: #eef2f7;
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.app {
+  width: 440px;
+  max-width: 95vw;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .07);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-weight: 900
+}
+
+.battery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800
+}
+
+.bar {
+  width: 110px;
+  height: 12px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  position: relative;
+  overflow: hidden
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  background: linear-gradient(90deg, #16a34a, #65a30d)
+}
+
+.low .fill {
+  background: linear-gradient(90deg, #f59e0b, #ef4444)
+}
+
+.main {
+  padding: 16px
+}
+
+.clock {
+  padding: 16px;
+  border-radius: 14px;
+  background: #f9fafb;
+  text-align: center;
+  transition: .2s;
+}
+
+.time {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  margin: 6px 0
+}
+
+.date {
+  color: var(--muted);
+  font-weight: 600
+}
+
+.blackout .time,
+.blackout .date {
+  color: transparent
+}
+
+.blackout .clock {
+  background: #000
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 12px
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #64748b;
+  margin: 12px 0 8px
+}
+
+.btn {
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-weight: 800;
+  cursor: pointer
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff
+}
+
+.btn-ghost {
+  background: #f3f4f6
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff
+}
+
+/* 알람 */
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px
+}
+
+label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 4px;
+  display: block
+}
+
+input[type=number] {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px
+}
+
+.item .t {
+  font-weight: 900;
+  font-size: 18px
+}
+
+.item .m {
+  font-size: 12px;
+  color: var(--muted)
+}
+
+.switch {
+  --w: 44px;
+  --h: 24px;
+  width: var(--w);
+  height: var(--h);
+  background: #e5e7eb;
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+  transition: .18s
+}
+
+.switch.active {
+  background: #22c55e
+}
+
+.switch.active::after {
+  left: calc(var(--w) - 21px)
+}
+
+/* 절전 모드 */
+body.power-save .app {
+  filter: saturate(.92) brightness(.97)
+}
